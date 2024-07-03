@@ -5,10 +5,9 @@
 
 void firstFit(int nb, int nf, int b[], int f[]) {
     int ff[MAX] = {0};
-    int allocated[MAX] = {0}; // To keep track of allocated blocks
-
+    int allocated[MAX] = {0}; 
     for (int i = 0; i < nf; i++) {
-        ff[i] = -1; // Initialize as not allocated
+        ff[i] = -1; 
         for (int j = 0; j < nb; j++) {
             if (allocated[j] == 0 && b[j] >= f[i]) {
                 ff[i] = j;
@@ -29,11 +28,10 @@ void firstFit(int nb, int nf, int b[], int f[]) {
 
 void bestFit(int nb, int nf, int b[], int f[]) {
     int ff[MAX] = {0};
-    int allocated[MAX] = {0}; // To keep track of allocated blocks
-
+    int allocated[MAX] = {0}; 
     for (int i = 0; i < nf; i++) {
         int best = -1;
-        ff[i] = -1; // Initialize as not allocated
+        ff[i] = -1; 
         for (int j = 0; j < nb; j++) {
             if (allocated[j] == 0 && b[j] >= f[i]) {
                 if (best == -1 || b[j] < b[best])
@@ -57,11 +55,11 @@ void bestFit(int nb, int nf, int b[], int f[]) {
 
 void worstFit(int nb, int nf, int b[], int f[]) {
     int ff[MAX] = {0};
-    int allocated[MAX] = {0}; // To keep track of allocated blocks
+    int allocated[MAX] = {0}; 
 
     for (int i = 0; i < nf; i++) {
         int worst = -1;
-        ff[i] = -1; // Initialize as not allocated
+        ff[i] = -1; 
         for (int j = 0; j < nb; j++) {
             if (allocated[j] == 0 && b[j] >= f[i]) {
                 if (worst == -1 || b[j] > b[worst])
