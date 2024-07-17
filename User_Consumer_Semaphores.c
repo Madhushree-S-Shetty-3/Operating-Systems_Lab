@@ -1,25 +1,31 @@
 #include<stdio.h>
 #include<stdlib.h>
 int mutex=1,full=0,empty=5,x=0;
-void wait()
-{
-    --mutex;
+void wait(int *s) {
+    while(*s <= 0);
+    (*s)--;
 }
-void signal()
-{
-    ++mutex;
+
+void signal(int *s) {
+    (*s)++;
 }
 void producer()
 {
-    wait();++full;--empty;x++;
+    wait(&empty);
+    wait(&mutex);
+    x++;
     printf("Producer has produced: Item %d\n",x);
-    signal();
+    signal(&mutex);
+    signal(&full);
 }
 void consumer()
 {
-    wait();--full;++empty;
+    wait(&full);
+    wait(&mutex);
     printf("Consumer has consumed: Item %d\n",x);
-    x--;signal();
+    x--;
+    signal(&mutex);
+    signal(&empty);
 }
 void main()
 {
